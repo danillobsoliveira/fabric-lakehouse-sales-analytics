@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Environment",
+    "displayName": "medallion_env",
+    "description": "Environment"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "df8fac0b-9074-99ff-45d3-3861991da1b5"
+  }
+}
