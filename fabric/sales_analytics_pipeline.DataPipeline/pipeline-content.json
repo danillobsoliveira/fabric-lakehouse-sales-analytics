@@ -1,0 +1,95 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "c75e0dae-0738-a608-4429-118b78d97cb1",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "generate_synthetic_data",
+        "description": "Generates synthetic transactional data to simulate real-world sales activity, serving as the raw input source for the analytics pipeline.",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "b50c1f52-1840-b8af-48df-ac2a7a30c3bd",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "ingest_bronze_data",
+        "description": "Ingests raw datasets into the Bronze layer, preserving source structure and metadata while ensuring data lineage and traceability.",
+        "dependsOn": [
+          {
+            "activity": "generate_synthetic_data",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "c75cf5ce-6618-930d-4ed8-8a0579898646",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "transform_silver_data",
+        "description": "Cleans, normalizes, and standardizes Bronze data by applying business rules and preparing datasets for analytical consumption.",
+        "dependsOn": [
+          {
+            "activity": "ingest_bronze_data",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "6bab4280-b4cc-9b03-4a5a-bf82b634eff2",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "build_gold_model",
+        "description": "Builds and maintains the analytical star schema by creating dimension and fact tables optimized for BI and reporting workloads.",
+        "dependsOn": [
+          {
+            "activity": "transform_silver_data",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
