@@ -93,7 +93,7 @@ The project simulates a commerce scenario, starting from raw transactional data 
 
 ## 🔄 Orchestration
 
-[text](screenshots)
+![alt text](screenshots/pipeline.png)
 
 A **Fabric Data Pipeline** orchestrates the execution of notebooks in the following order:
 
