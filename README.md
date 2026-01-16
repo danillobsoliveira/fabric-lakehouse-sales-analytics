@@ -93,6 +93,10 @@ The project simulates a commerce scenario, starting from raw transactional data 
 
 ## 🔄 Orchestration
 
+bronze_ingestion
+silver_transformations
+gold_modeling
+
 ![alt text](screenshots/pipeline.png)
 
 A **Fabric Data Pipeline** orchestrates the execution of notebooks in the following order:
