@@ -1,0 +1,1044 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1604,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "purchases",
+        "sourceLineageTag": "[bronze].[purchases]",
+        "columns": [
+          {
+            "name": "purchase_date",
+            "dataType": "string",
+            "sourceColumn": "purchase_date",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "purchase_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "purchase_id",
+            "dataType": "int64",
+            "sourceColumn": "purchase_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "purchase_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "purchase_total",
+            "dataType": "double",
+            "sourceColumn": "purchase_total",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "purchase_total",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          },
+          {
+            "name": "ingestion_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "ingestion_timestamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "ingestion_timestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "source_system",
+            "dataType": "string",
+            "sourceColumn": "source_system",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "source_system",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "batch_id",
+            "dataType": "string",
+            "sourceColumn": "batch_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "batch_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "purchases",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "bronze"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_customer",
+        "sourceLineageTag": "[gold].[dim_customer]",
+        "columns": [
+          {
+            "name": "customer_sk",
+            "dataType": "int64",
+            "sourceColumn": "customer_sk",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "customer_sk",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_id",
+            "dataType": "int64",
+            "sourceColumn": "customer_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "customer_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_name",
+            "dataType": "string",
+            "sourceColumn": "customer_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "customer_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_email",
+            "dataType": "string",
+            "sourceColumn": "customer_email",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "customer_email",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "hash_diff",
+            "dataType": "string",
+            "sourceColumn": "hash_diff",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "hash_diff",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "is_current",
+            "dataType": "boolean",
+            "sourceColumn": "is_current",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "is_current",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "valid_from",
+            "dataType": "dateTime",
+            "sourceColumn": "valid_from",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "valid_from",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "valid_to",
+            "dataType": "dateTime",
+            "sourceColumn": "valid_to",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "valid_to",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "batch_id",
+            "dataType": "string",
+            "sourceColumn": "batch_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "batch_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_customer",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "gold"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_date",
+        "sourceLineageTag": "[gold].[dim_date]",
+        "columns": [
+          {
+            "name": "date_sk",
+            "dataType": "int64",
+            "sourceColumn": "date_sk",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "date_sk",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "full_date",
+            "dataType": "dateTime",
+            "sourceColumn": "full_date",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "full_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "year",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "month",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "month_name",
+            "dataType": "string",
+            "sourceColumn": "month_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "month_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "quarter",
+            "dataType": "int64",
+            "sourceColumn": "quarter",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "quarter",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "day",
+            "dataType": "int64",
+            "sourceColumn": "day",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "day",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "day_of_week",
+            "dataType": "string",
+            "sourceColumn": "day_of_week",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "day_of_week",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "is_weekend",
+            "dataType": "boolean",
+            "sourceColumn": "is_weekend",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "is_weekend",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_date",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "gold"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "dim_product",
+        "sourceLineageTag": "[gold].[dim_product]",
+        "columns": [
+          {
+            "name": "product_sk",
+            "dataType": "int64",
+            "sourceColumn": "product_sk",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "product_sk",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_id",
+            "dataType": "int64",
+            "sourceColumn": "product_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "product_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_name",
+            "dataType": "string",
+            "sourceColumn": "product_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "product_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_category",
+            "dataType": "string",
+            "sourceColumn": "product_category",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "product_category",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "hash_diff",
+            "dataType": "string",
+            "sourceColumn": "hash_diff",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "hash_diff",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "is_current",
+            "dataType": "boolean",
+            "sourceColumn": "is_current",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "bit",
+            "sourceLineageTag": "is_current",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "valid_from",
+            "dataType": "dateTime",
+            "sourceColumn": "valid_from",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "valid_from",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "valid_to",
+            "dataType": "dateTime",
+            "sourceColumn": "valid_to",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "valid_to",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "batch_id",
+            "dataType": "string",
+            "sourceColumn": "batch_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "batch_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "dim_product",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "gold"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "fact_purchases",
+        "sourceLineageTag": "[gold].[fact_purchases]",
+        "columns": [
+          {
+            "name": "purchase_id",
+            "dataType": "int64",
+            "sourceColumn": "purchase_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "purchase_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_sk",
+            "dataType": "int64",
+            "sourceColumn": "customer_sk",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "customer_sk",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_sk",
+            "dataType": "int64",
+            "sourceColumn": "product_sk",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "product_sk",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "date_sk",
+            "dataType": "int64",
+            "sourceColumn": "date_sk",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "date_sk",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "quantity",
+            "dataType": "int64",
+            "sourceColumn": "quantity",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "quantity",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "unit_price",
+            "dataType": "decimal",
+            "sourceColumn": "unit_price",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "unit_price",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "total_amount",
+            "dataType": "decimal",
+            "sourceColumn": "total_amount",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "total_amount",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "batch_id",
+            "dataType": "string",
+            "sourceColumn": "batch_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "batch_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "fact_purchases",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "gold"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      },
+      {
+        "name": "purchases(1)",
+        "sourceLineageTag": "[silver].[purchases]",
+        "columns": [
+          {
+            "name": "purchase_id",
+            "dataType": "int64",
+            "sourceColumn": "purchase_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "purchase_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "purchase_date",
+            "dataType": "dateTime",
+            "sourceColumn": "purchase_date",
+            "formatString": "General Date",
+            "sourceProviderType": "date",
+            "sourceLineageTag": "purchase_date",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "purchase_total",
+            "dataType": "decimal",
+            "sourceColumn": "purchase_total",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "purchase_total",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_id",
+            "dataType": "int64",
+            "sourceColumn": "customer_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "customer_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_email",
+            "dataType": "string",
+            "sourceColumn": "customer_email",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "customer_email",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "customer_name",
+            "dataType": "string",
+            "sourceColumn": "customer_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "customer_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_id",
+            "dataType": "int64",
+            "sourceColumn": "product_id",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "product_id",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_name",
+            "dataType": "string",
+            "sourceColumn": "product_name",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "product_name",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "product_category",
+            "dataType": "string",
+            "sourceColumn": "product_category",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "product_category",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "quantity",
+            "dataType": "int64",
+            "sourceColumn": "quantity",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "quantity",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "unit_price",
+            "dataType": "decimal",
+            "sourceColumn": "unit_price",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "unit_price",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "item_total_value",
+            "dataType": "decimal",
+            "sourceColumn": "item_total_value",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "item_total_value",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ingestion_timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "ingestion_timestamp",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "ingestion_timestamp",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "source_system",
+            "dataType": "string",
+            "sourceColumn": "source_system",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "source_system",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "batch_id",
+            "dataType": "string",
+            "sourceColumn": "batch_id",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "batch_id",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "purchase_year",
+            "dataType": "int64",
+            "sourceColumn": "purchase_year",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "purchase_year",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "purchase_month",
+            "dataType": "int64",
+            "sourceColumn": "purchase_month",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "purchase_month",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "calculated_item_total",
+            "dataType": "double",
+            "sourceColumn": "calculated_item_total",
+            "sourceProviderType": "decimal",
+            "sourceLineageTag": "calculated_item_total",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "purchases",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "silver"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "False"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}
