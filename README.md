@@ -114,18 +114,29 @@ fabric-lakehouse-medallion/
 ├── architecture/
 │   └── decisions.md
 │
+├── data-samples/
+│
 ├── fabric/
 │   ├── dataset_generator.Notebook
 │   ├── bronze_ingestion.Notebook
 │   ├── silver_transformation.Notebook
 │   ├── gold_modeling.Notebook
 │   ├── sales_analytics_pipeline.DataPipeline
+│   └── medallion.Environment
 │   └── lh_sales_analytics.Lakehouse
 │
 ├── notes/
 │   └── dev-notes.md
 │
 ├── screenshots/
+│
+├── sql/
+│   └── SQL database project
+│   └── bronze_layer_validation.sql
+│   └── silver_layer_validation.sql
+│   └── gold_layer_validation.sql
+│
+├── gitignore
 │
 └── README.md
 ```
