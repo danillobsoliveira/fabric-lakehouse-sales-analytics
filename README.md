@@ -25,8 +25,7 @@ The project simulates a commerce scenario, starting from raw transactional data 
 
 ## 🏗️ Architecture Overview
 
-![alt text](architecture/fabric-lakehouse-sales-analytics.drawio.png)
-
+![alt text](architecture/fabric-lakehouse-medallion-architecture.drawio.png)
 
 ### Core Components
 - **Storage**: OneLake (Fabric Lakehouse)
@@ -92,10 +91,6 @@ The project simulates a commerce scenario, starting from raw transactional data 
 ---
 
 ## 🔄 Orchestration
-
-bronze_ingestion
-silver_transformations
-gold_modeling
 
 ![alt text](screenshots/pipeline.png)
 
